@@ -3,6 +3,9 @@ package com.gzf.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.gzf.dto.User;
 import com.gzf.dto.UserQueryCondition;
+import com.gzf.exception.ControllerExceptionHandler;
+import com.gzf.exception.ServiceException;
+import com.gzf.exception.UserNotExitsException;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
@@ -42,11 +45,12 @@ public class UserController {
     @JsonView(User.UserDetailsView.class)
     public User getUserInfo(@PathVariable String id){
 
-        throw new RuntimeException("错了 ");
-//        System.out.println("id:"+id);
-//        User user = new User();
-//        user.setUsername("哈哈神");
-//        return user;
+//        throw new ServiceException(this.getClass().getName());
+        System.out.println("id:"+id);
+        System.out.println(Thread.currentThread().getName());
+        User user = new User();
+        user.setUsername("哈哈神");
+        return user;
     }
 
     @PostMapping
