@@ -47,17 +47,17 @@ public class UserController {
 
 //        throw new ServiceException(this.getClass().getName());
         System.out.println("id:"+id);
-        System.out.println(Thread.currentThread().getName());
+        System.out.println("当前线程名称："+Thread.currentThread().getName());
         User user = new User();
         user.setUsername("哈哈神");
         return user;
     }
 
     @PostMapping
-    public User create(@Valid @RequestBody User user){
-//        if(errors.hasErrors()){
-//            errors.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-//        }
+    public User create(@Valid @RequestBody User user,BindingResult errors){
+        if(errors.hasErrors()){
+            errors.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
         System.out.println(user.getId());
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());

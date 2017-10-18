@@ -1,9 +1,14 @@
-spring.datasource.driver-class-name= com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?useSSL=false
-spring.datasource.username=root
-spring.datasource.password=gzf123
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false
+    username: root
+    password: gzf123'
+  session:
+      store-type: none  #spring session 的存放方式 none不使用
 
-#是否开启基本的验证 默认为true
-security.basic.enabled=false
-spring.session.store-type=none
-server.port=8080
+security:
+    basic:
+      enabled: false  #是否开启基本的权鉴验证  默认：true
+server:
+  port: 8080
