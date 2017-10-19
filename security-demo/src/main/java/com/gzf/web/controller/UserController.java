@@ -8,6 +8,8 @@ import com.gzf.exception.ServiceException;
 import com.gzf.exception.UserNotExitsException;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * @author GFZ
@@ -24,6 +28,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
@@ -43,13 +49,10 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")  //可写正则
     @JsonView(User.UserDetailsView.class)
-    public User getUserInfo(@PathVariable String id){
-
+    public User getUserInfo(@PathVariable String id) throws Exception {
 //        throw new ServiceException(this.getClass().getName());
-        System.out.println("id:"+id);
-        System.out.println("当前线程名称："+Thread.currentThread().getName());
-        User user = new User();
-        user.setUsername("哈哈神");
+        User user= new User();
+        user.setId(id);
         return user;
     }
 

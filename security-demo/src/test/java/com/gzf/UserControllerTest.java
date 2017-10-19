@@ -68,7 +68,7 @@ public class UserControllerTest {
     public void whenGetInfoFail() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/user/a")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                //期待返回400 4xx的状态码);
+                //期待返回400 4xx的状态码;
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
