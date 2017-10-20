@@ -34,16 +34,22 @@ public class UserController {
     @GetMapping
     @JsonView(User.UserSimpleView.class)
     public List<User> query(UserQueryCondition condition,@PageableDefault(size = 10,page = 2,sort = "username,asc") Pageable pageable){
-
-        System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
-        System.out.println(pageable.getPageSize());
-        System.out.println(pageable.getSort());
-        System.out.println(pageable.getPageNumber());
+        User user = new User();
+        try{
+            String [] a= new String[1];
+            System.out.println(a[5]);
+        }catch (Exception e){
+            e.getMessage();
+        }
+//        System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
+//        System.out.println(pageable.getPageSize());
+//        System.out.println(pageable.getSort());
+//        System.out.println(pageable.getPageNumber());
 
         List<User> users = new ArrayList<>();
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
+//        users.add(new User());
+//        users.add(new User());
+//        users.add(new User());
         return users;
     }
 
