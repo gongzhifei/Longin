@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false
     username: root
-    password: gzf123'
+    password: gzf123
   session:
       store-type: none  #spring session 的存放方式 none不使用
 

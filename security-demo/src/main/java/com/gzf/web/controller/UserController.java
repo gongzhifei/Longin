@@ -6,6 +6,8 @@ import com.gzf.dto.UserQueryCondition;
 import com.gzf.exception.ControllerExceptionHandler;
 import com.gzf.exception.ServiceException;
 import com.gzf.exception.UserNotExitsException;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -33,6 +35,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
+    @ApiOperation(value = "查询所有用户全部信息")
     public List<User> query(UserQueryCondition condition,@PageableDefault(size = 10,page = 2,sort = "username,asc") Pageable pageable){
         User user = new User();
         try{
@@ -55,7 +58,8 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")  //可写正则
     @JsonView(User.UserDetailsView.class)
-    public User getUserInfo(@PathVariable String id) throws Exception {
+    @ApiOperation(value = "根据ID查询单个用户")
+    public User getUserInfo(@ApiParam(value = "用户ID")@PathVariable String id) throws Exception {
 //        throw new ServiceException(this.getClass().getName());
         User user= new User();
         user.setId(id);
@@ -94,7 +98,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id:\\d+}")
-    public void delete(@PathVariable String id){
+    public void delete(@ApiParam(value = "用户ID") @PathVariable String id){
         System.out.println("删除id:"+id);
     }
 
